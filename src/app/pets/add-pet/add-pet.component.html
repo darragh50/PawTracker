@@ -1,0 +1,60 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-title>Add New Pet</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content class="ion-padding">
+    <form [formGroup]="petForm" (ngSubmit)="onSubmit()">
+      <ion-item>
+        <ion-label position="floating">Pet Name <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input formControlName="name" type="text"></ion-input>
+      </ion-item>
+      <ion-note color="danger" *ngIf="petForm.get('name')?.touched && petForm.get('name')?.hasError('required')">
+        Name is required
+      </ion-note>
+      
+      <ion-item>
+        <ion-label position="floating">Breed <ion-text color="danger">*</ion-text></ion-label>
+        <ion-select formControlName="breed">
+          <ion-select-option *ngFor="let breed of breedOptions" [value]="breed">
+            {{breed}}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-note color="danger" *ngIf="petForm.get('breed')?.touched && petForm.get('breed')?.hasError('required')">
+        Breed is required
+      </ion-note>
+      
+      <ion-item>
+        <ion-label position="floating">Weight (kg) <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input formControlName="weight" type="number"></ion-input>
+      </ion-item>
+      <ion-note color="danger" *ngIf="petForm.get('weight')?.touched && petForm.get('weight')?.hasError('required')">
+        Weight is required
+      </ion-note>
+      <ion-note color="danger" *ngIf="petForm.get('weight')?.touched && petForm.get('weight')?.hasError('min')">
+        Weight must be greater than 0
+      </ion-note>
+      
+      <ion-item>
+        <ion-label position="floating">Gender</ion-label>
+        <ion-select formControlName="gender">
+          <ion-select-option value="Male">Male</ion-select-option>
+          <ion-select-option value="Female">Female</ion-select-option>
+        </ion-select>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label position="floating">Birthday</ion-label>
+        <ion-input type="date" formControlName="birthday"></ion-input>
+      </ion-item>
+      
+      <div class="ion-padding">
+        <ion-button expand="block" type="submit" [disabled]="!petForm.valid || isSubmitting">
+          <ion-spinner *ngIf="isSubmitting"></ion-spinner>
+          <span *ngIf="!isSubmitting">Add Pet</span>
+        </ion-button>
+      </div>
+    </form>
+  </ion-content>
