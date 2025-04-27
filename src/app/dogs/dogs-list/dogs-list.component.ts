@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IonicModule, NavController } from '@ionic/angular';
+import { IonicModule, NavController, GestureController, ToastController } from '@ionic/angular';
 import { PetsService } from '../../services/pets.service';
 import { Observable } from 'rxjs';
 
@@ -17,7 +17,9 @@ export class DogsListComponent implements OnInit {
 
   constructor(
     private petsService: PetsService,
-    private navCtrl: NavController
+    private navCtrl: NavController,
+    private gestureCtrl: GestureController,
+    private toastCtrl: ToastController
   ) {
     this.dogs$ = this.petsService.getUserPets();
   }
@@ -32,5 +34,21 @@ export class DogsListComponent implements OnInit {
 
   viewDogDetails(dogId: string) {
     this.navCtrl.navigateForward(`/dog-detail/${dogId}`);
+  }
+
+  //Pull to refresh functionality
+  doRefresh(event: any) {
+    //Reload dogs list
+    this.dogs$ = this.petsService.getUserPets();
+    
+    //Complete the refresh
+    setTimeout(() => {
+      event.target.complete();
+      this.toastCtrl.create({
+        message: 'Dogs list refreshed',
+        duration: 2000,
+        color: 'success'
+      }).then(toast => toast.present());
+    }, 1000);
   }
 }

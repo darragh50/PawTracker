@@ -5,6 +5,16 @@
   </ion-header>
   
   <ion-content class="ion-padding">
+     <!-- Pull to refresh -->
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="chevron-down-circle-outline"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+
     <!-- Loading indicator -->
     <div class="loading-container" *ngIf="isLoading">
       <ion-spinner></ion-spinner>
@@ -22,7 +32,7 @@
     <div class="dogs-grid" *ngIf="(dogs$ | async)?.length">
       <ion-card *ngFor="let dog of dogs$ | async" (click)="viewDogDetails(dog.id)" class="dog-card">
         <div class="dog-image">
-          <img [src]="dog.photoURL || 'assets/images/default-dog.jpg'" alt="{{ dog.name }}">
+          <img [src]="dog.photoURL || 'assets/icon/dog1.png'" alt="{{ dog.name }}">
         </div>
         <ion-card-header>
           <ion-card-title>{{ dog.name }}</ion-card-title>
