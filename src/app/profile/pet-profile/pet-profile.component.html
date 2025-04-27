@@ -1,0 +1,63 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-title>My Profile</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content class="ion-padding">
+    <div class="profile-container" *ngIf="user">
+      <div class="avatar-container">
+        <ion-avatar>
+          <img src="assets/icons/user-avatar.png" alt="User avatar">
+        </ion-avatar>
+      </div>
+      
+      <h2>{{ user.email }}</h2>
+      
+      <ion-list>
+        <ion-item>
+          <ion-icon name="person-outline" slot="start"></ion-icon>
+          <ion-label>
+            <h2>Account Details</h2>
+            <p>View and update your profile</p>
+          </ion-label>
+          <ion-icon name="chevron-forward" slot="end"></ion-icon>
+        </ion-item>
+        
+        <ion-item>
+          <ion-icon name="notifications-outline" slot="start"></ion-icon>
+          <ion-label>
+            <h2>Notifications</h2>
+            <p>Manage your notification settings</p>
+          </ion-label>
+          <ion-icon name="chevron-forward" slot="end"></ion-icon>
+        </ion-item>
+        
+        <ion-item>
+          <ion-icon name="settings-outline" slot="start"></ion-icon>
+          <ion-label>
+            <h2>App Settings</h2>
+            <p>Customize app behavior</p>
+          </ion-label>
+          <ion-icon name="chevron-forward" slot="end"></ion-icon>
+        </ion-item>
+        
+        <ion-item>
+          <ion-icon name="help-circle-outline" slot="start"></ion-icon>
+          <ion-label>
+            <h2>Help & Support</h2>
+            <p>Get assistance or report issues</p>
+          </ion-label>
+          <ion-icon name="chevron-forward" slot="end"></ion-icon>
+        </ion-item>
+      </ion-list>
+      
+      <ion-button expand="block" color="danger" (click)="logout()" class="logout-button">
+        Logout
+      </ion-button>
+      
+      <div class="app-info">
+        <p>PawTrack v1.0.0</p>
+      </div>
+    </div>
+  </ion-content>

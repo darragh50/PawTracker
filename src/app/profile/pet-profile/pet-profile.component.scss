@@ -1,0 +1,35 @@
+.profile-container {
+    padding: 20px 0;
+    
+    .avatar-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 16px;
+      
+      ion-avatar {
+        width: 100px;
+        height: 100px;
+      }
+    }
+    
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: var(--ion-color-dark);
+    }
+  }
+  
+  ion-list {
+    margin-bottom: 30px;
+  }
+  
+  .logout-button {
+    margin: 20px 0;
+  }
+  
+  .app-info {
+    text-align: center;
+    color: var(--ion-color-medium);
+    font-size: 12px;
+    margin-top: 30px;
+  }
