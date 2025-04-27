@@ -1,0 +1,46 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-title>PawTrack</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content class="ion-padding">
+    <div class="login-container">
+      <h1 class="title">Login</h1>
+      
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <ion-item>
+          <ion-label position="floating">Email</ion-label>
+          <ion-input type="email" formControlName="email"></ion-input>
+        </ion-item>
+        <ion-note color="danger" *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.hasError('required')">
+          Email is required
+        </ion-note>
+        <ion-note color="danger" *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.hasError('email')">
+          Please enter a valid email
+        </ion-note>
+        
+        <ion-item>
+          <ion-label position="floating">Password</ion-label>
+          <ion-input type="password" formControlName="password"></ion-input>
+        </ion-item>
+        <ion-note color="danger" *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.hasError('required')">
+          Password is required
+        </ion-note>
+        
+        <ion-note color="danger" *ngIf="errorMessage">
+          {{ errorMessage }}
+        </ion-note>
+        
+        <ion-button expand="block" type="submit" [disabled]="!loginForm.valid || isLoading">
+          <ion-spinner *ngIf="isLoading"></ion-spinner>
+          <span *ngIf="!isLoading">Login</span>
+        </ion-button>
+      </form>
+      
+      <div class="signup-link">
+        <p>Don't have an account?</p>
+        <ion-button fill="clear" routerLink="/signup">Sign Up</ion-button>
+      </div>
+    </div>
+  </ion-content>
