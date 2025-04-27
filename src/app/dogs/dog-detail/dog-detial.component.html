@@ -1,0 +1,180 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-button (click)="goBack()">
+          <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+      <ion-title *ngIf="dog$ | async as dog">{{ dog.name }}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+    <div *ngIf="dog$ | async as dog">
+      <!-- Dog header -->
+      <div class="dog-header">
+        <div class="dog-image">
+          <img [src]="dog.photoURL || 'assets/images/default-dog.jpg'" alt="{{ dog.name }}">
+        </div>
+        <div class="dog-info">
+          <h1>{{ dog.name }}</h1>
+          <p>{{ dog.breed }}</p>
+        </div>
+      </div>
+      
+      <!-- Segment control for different views -->
+      <ion-segment [(ngModel)]="selectedSegment" (ionChange)="segmentChanged($event)">
+        <ion-segment-button value="details">
+          <ion-label>Details</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="walks">
+          <ion-label>Walks</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="nutrition">
+          <ion-label>Nutrition</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="medicine">
+          <ion-label>Medicine</ion-label>
+        </ion-segment-button>
+      </ion-segment>
+      
+      <!-- Details segment -->
+      <div [ngSwitch]="selectedSegment" class="segment-content">
+        <div *ngSwitchCase="'details'" class="details-segment">
+          <ion-list>
+            <ion-item>
+              <ion-label>
+                <h2>Breed</h2>
+                <p>{{ dog.breed }}</p>
+              </ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>
+                <h2>Weight</h2>
+                <p>{{ dog.weight }} kg</p>
+              </ion-label>
+            </ion-item>
+            <ion-item *ngIf="dog.gender">
+              <ion-label>
+                <h2>Gender</h2>
+                <p>{{ dog.gender }}</p>
+              </ion-label>
+            </ion-item>
+            <ion-item *ngIf="dog.birthday">
+              <ion-label>
+                <h2>Birthday</h2>
+                <p>{{ dog.birthday | date }}</p>
+              </ion-label>
+            </ion-item>
+          </ion-list>
+        </div>
+        
+        <!-- Walks segment -->
+        <div *ngSwitchCase="'walks'" class="walks-segment">
+          <div class="map-placeholder">
+            <ion-icon name="map-outline"></ion-icon>
+            <p>Map view will appear here</p>
+          </div>
+          
+          <ion-button expand="block" color="primary" class="start-walk-btn">
+            Start New Walk
+          </ion-button>
+          
+          <ion-list>
+            <ion-list-header>
+              <ion-label>Recent Walks</ion-label>
+            </ion-list-header>
+            <ion-item>
+              <ion-label>
+                <h2>Morning Walk</h2>
+                <p>Today • 2.5 miles • 32 min</p>
+              </ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>
+                <h2>Evening Walk</h2>
+                <p>Yesterday • 1.8 miles • 25 min</p>
+              </ion-label>
+            </ion-item>
+          </ion-list>
+        </div>
+        
+        <!-- Nutrition segment -->
+        <div *ngSwitchCase="'nutrition'" class="nutrition-segment">
+          <ion-list>
+            <ion-list-header>
+              <ion-label>Nutrition Info</ion-label>
+            </ion-list-header>
+            <ion-item>
+              <ion-icon name="flame-outline" slot="start"></ion-icon>
+              <ion-label>
+                <h2>Daily Calories</h2>
+                <p>350 kcal</p>
+              </ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-icon name="restaurant-outline" slot="start"></ion-icon>
+              <ion-label>
+                <h2>Diet Type</h2>
+                <p>Premium Kibble</p>
+              </ion-label>
+            </ion-item>
+          </ion-list>
+          
+          <ion-list>
+            <ion-list-header>
+              <ion-label>Feeding Schedule</ion-label>
+            </ion-list-header>
+            <ion-item>
+              <ion-label>
+                <h2>Breakfast</h2>
+                <p>Every day at 8:00 AM</p>
+              </ion-label>
+              <ion-checkbox slot="end" checked></ion-checkbox>
+            </ion-item>
+            <ion-item>
+              <ion-label>
+                <h2>Dinner</h2>
+                <p>Every day at 6:00 PM</p>
+              </ion-label>
+              <ion-checkbox slot="end" checked></ion-checkbox>
+            </ion-item>
+          </ion-list>
+        </div>
+        
+        <!-- Medicine segment -->
+        <div *ngSwitchCase="'medicine'" class="medicine-segment">
+          <ion-list>
+            <ion-list-header>
+              <ion-label>Medications</ion-label>
+            </ion-list-header>
+            <ion-item>
+              <ion-label>
+                <h2>Heartworm Prevention</h2>
+                <p>Monthly • Last dose: 15 days ago</p>
+              </ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>
+                <h2>Flea & Tick</h2>
+                <p>Monthly • Due in 5 days</p>
+              </ion-label>
+            </ion-item>
+          </ion-list>
+          
+          <ion-list>
+            <ion-list-header>
+              <ion-label>Vet Visits</ion-label>
+            </ion-list-header>
+            <ion-item>
+              <ion-label>
+                <h2>Annual Checkup</h2>
+                <p>June 10, 2023</p>
+                <p>All vaccinations up to date</p>
+              </ion-label>
+            </ion-item>
+          </ion-list>
+        </div>
+      </div>
+    </div>
+  </ion-content>
