@@ -1,0 +1,7 @@
+{
+  "name": "pawtrack-new",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
