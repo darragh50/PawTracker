@@ -4,13 +4,15 @@ import { IonicModule, NavController } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { PetsService } from '../../services/pets.service';
+import { FormsModule } from '@angular/forms';
+
 
 @Component({
   selector: 'app-dog-detail',
   templateUrl: './dog-detail.component.html',
   styleUrls: ['./dog-detail.component.scss'],
   standalone: true,
-  imports: [CommonModule, IonicModule]
+  imports: [CommonModule, IonicModule, FormsModule],
 })
 export class DogDetailComponent implements OnInit {
   dogId: string = '';
