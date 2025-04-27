@@ -1,0 +1,56 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="/login"></ion-back-button>
+      </ion-buttons>
+      <ion-title>Sign Up</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content class="ion-padding">
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+      <ion-item>
+        <ion-label position="floating">Email</ion-label>
+        <ion-input type="email" formControlName="email"></ion-input>
+      </ion-item>
+      <ion-note color="danger" *ngIf="signupForm.get('email')?.touched && signupForm.get('email')?.hasError('required')">
+        Email is required
+      </ion-note>
+      <ion-note color="danger" *ngIf="signupForm.get('email')?.touched && signupForm.get('email')?.hasError('email')">
+        Please enter a valid email
+      </ion-note>
+      
+      <ion-item>
+        <ion-label position="floating">Password</ion-label>
+        <ion-input type="password" formControlName="password"></ion-input>
+      </ion-item>
+      <ion-note color="danger" *ngIf="signupForm.get('password')?.touched && signupForm.get('password')?.hasError('required')">
+        Password is required
+      </ion-note>
+      <ion-note color="danger" *ngIf="signupForm.get('password')?.touched && signupForm.get('password')?.hasError('minlength')">
+        Password must be at least 6 characters
+      </ion-note>
+      
+      <ion-item>
+        <ion-label position="floating">Confirm Password</ion-label>
+        <ion-input type="password" formControlName="confirmPassword"></ion-input>
+      </ion-item>
+      <ion-note color="danger" *ngIf="signupForm.get('confirmPassword')?.touched && signupForm.get('confirmPassword')?.hasError('required')">
+        Please confirm your password
+      </ion-note>
+      <ion-note color="danger" *ngIf="signupForm.get('confirmPassword')?.touched && signupForm.get('confirmPassword')?.hasError('passwordMismatch')">
+        Passwords do not match
+      </ion-note>
+      
+      <ion-note color="danger" *ngIf="errorMessage">
+        {{ errorMessage }}
+      </ion-note>
+      
+      <div class="ion-padding">
+        <ion-button expand="block" type="submit" [disabled]="!signupForm.valid || isLoading">
+          <ion-spinner *ngIf="isLoading"></ion-spinner>
+          <span *ngIf="!isLoading">Sign Up</span>
+        </ion-button>
+      </div>
+    </form>
+  </ion-content>
