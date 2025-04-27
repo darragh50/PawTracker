@@ -1,0 +1,32 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-title>PawTrack</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content class="ion-padding">
+    <div class="welcome-container" *ngIf="user$ | async as user">
+      <div class="avatar-container">
+        <ion-avatar>
+          <img src="assets/icons/user-avatar.png" alt="User avatar">
+        </ion-avatar>
+      </div>
+      
+      <h1>Welcome to PawTrack</h1>
+      <p>Track your dogs' activities, nutrition, and health all in one place.</p>
+      
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>Quick Navigation</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <p>Use the tabs below to:</p>
+          <ul>
+            <li>View all your dogs (Dogs tab)</li>
+            <li>Add a new pet (Add Pet tab)</li>
+            <li>View your profile (Profile tab)</li>
+          </ul>
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </ion-content>

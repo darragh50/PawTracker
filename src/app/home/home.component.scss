@@ -1,0 +1,30 @@
+.welcome-container {
+    text-align: center;
+    padding: 20px 0;
+    
+    .avatar-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+      
+      ion-avatar {
+        width: 80px;
+        height: 80px;
+      }
+    }
+    
+    h1 {
+      margin-bottom: 10px;
+      color: var(--ion-color-primary);
+    }
+    
+    p {
+      color: var(--ion-color-medium);
+      margin-bottom: 30px;
+    }
+    
+    ion-card {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+  }
