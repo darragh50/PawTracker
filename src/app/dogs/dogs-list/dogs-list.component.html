@@ -1,0 +1,45 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-title>My Dogs</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content class="ion-padding">
+    <!-- Loading indicator -->
+    <div class="loading-container" *ngIf="isLoading">
+      <ion-spinner></ion-spinner>
+      <p>Loading your dogs...</p>
+    </div>
+    
+    <!-- No dogs message -->
+    <div class="empty-state" *ngIf="!(dogs$ | async)?.length && !isLoading">
+      <ion-icon name="paw-outline" size="large"></ion-icon>
+      <h2>No Dogs Yet</h2>
+      <p>Add your first dog using the "Add Pet" tab below</p>
+    </div>
+    
+    <!-- Dogs grid -->
+    <div class="dogs-grid" *ngIf="(dogs$ | async)?.length">
+      <ion-card *ngFor="let dog of dogs$ | async" (click)="viewDogDetails(dog.id)" class="dog-card">
+        <div class="dog-image">
+          <img [src]="dog.photoURL || 'assets/images/default-dog.jpg'" alt="{{ dog.name }}">
+        </div>
+        <ion-card-header>
+          <ion-card-title>{{ dog.name }}</ion-card-title>
+          <ion-card-subtitle>{{ dog.breed }}</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          <div class="dog-stats">
+            <div class="stat">
+              <ion-icon name="scale-outline"></ion-icon>
+              <span>{{ dog.weight }} kg</span>
+            </div>
+            <div class="stat" *ngIf="dog.gender">
+              <ion-icon [name]="dog.gender === 'Male' ? 'male-outline' : 'female-outline'"></ion-icon>
+              <span>{{ dog.gender }}</span>
+            </div>
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </ion-content>

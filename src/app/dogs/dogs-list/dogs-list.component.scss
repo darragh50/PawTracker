@@ -1,0 +1,78 @@
+.loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    
+    p {
+      margin-top: 10px;
+      color: var(--ion-color-medium);
+    }
+  }
+  
+  .empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    text-align: center;
+    padding: 0 20px;
+    
+    ion-icon {
+      font-size: 60px;
+      color: var(--ion-color-medium);
+      margin-bottom: 20px;
+    }
+    
+    h2 {
+      margin-bottom: 10px;
+      color: var(--ion-color-dark);
+    }
+    
+    p {
+      color: var(--ion-color-medium);
+    }
+  }
+  
+  .dogs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+    padding: 10px;
+  }
+  
+  .dog-card {
+    cursor: pointer;
+    transition: transform 0.2s;
+    
+    &:active {
+      transform: scale(0.98);
+    }
+    
+    .dog-image {
+      height: 180px;
+      overflow: hidden;
+      
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+    
+    .dog-stats {
+      display: flex;
+      justify-content: space-around;
+      
+      .stat {
+        display: flex;
+        align-items: center;
+        
+        ion-icon {
+          margin-right: 5px;
+        }
+      }
+    }
+  }
